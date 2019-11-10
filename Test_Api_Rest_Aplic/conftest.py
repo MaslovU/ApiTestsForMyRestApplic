@@ -6,7 +6,7 @@ import requests
 
 class APIClient:
     """APIClient"""
-    def __init__(self, address='http://localhost:8080'):
+    def __init__(self, address='http://localhost:9000'):
         self.address = address
 
     def do_get(self, endpoint):
