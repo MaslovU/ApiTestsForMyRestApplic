@@ -4,8 +4,8 @@ ENDPOINT3 = 'employee'
 ENDPOINT4 = 'employees'
 ENDPOINT5 = 'employeeFromDiv'
 ENDPOINTS = [ENDPOINT3, ENDPOINT4, ENDPOINT5]
-PARAM1 = '1'
-PARAM2 = 'text=QA'
+PARAM1 = '3'
+PARAM2 = 'text=Develop'
 PARAM3 = 'name=Maslov'
 DATA = {"name": "Test"}
 
@@ -17,7 +17,8 @@ def test_endpoints_employee(client, endpoint3, param1):
     endpoint = '/'.join([endpoint3, param1])
     response = client.do_get(endpoint)
     jsons = response.json()
-    assert jsons[0]['text'] == 'Maslov'
+    # check for several employee
+    assert jsons['name'] == 'Maslov'
 
 
 @pytest.mark.parametrize('endpoint5', [ENDPOINT5])
@@ -27,7 +28,7 @@ def test_endpoints_by_division(client, endpoint5, param2):
     endpoint = '?'.join([endpoint5, param2])
     response = client.do_get(endpoint)
     jsons = response.json()
-    assert jsons[0]['text'] == 'Maslov'
+    assert jsons[0]['name'] == 'Maslov'
 
 
 @pytest.mark.parametrize('endpoint3', [ENDPOINT3])
@@ -37,7 +38,7 @@ def test_endpoints_by_name(client, endpoint3, param3):
     endpoint = '?'.join([endpoint3, param3])
     response = client.do_get(endpoint)
     jsons = response.json()
-    assert jsons[0]['text'] == 'Maslov'
+    assert jsons[0]['name'] == 'Maslov'
 
 
 @pytest.mark.parametrize('endpoint4', [ENDPOINT4])
