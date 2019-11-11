@@ -12,18 +12,28 @@ class APIClient:
     def do_get(self, endpoint):
         """Get-method"""
         url = '/'.join([self.address, endpoint])
-        return requests.get(url)  # возможно надо удалить verify
+        return requests.get(url)
 
-    # def do_post(self, endpoint, data=None, verify_ssl=False):
-    #     """POST-method"""
-    #     url = '/'.join([endpoint])
-    #     return requests.post(url, data, verify=verify_ssl)
-    #
-    # def do_json(self, endpoint, verify_ssl=False):
-    #     """JSON-method"""
-    #     url = '/'.join([endpoint])
-    #     req = requests.get(url, verify=verify_ssl)
-    #     return json.loads(req.text)
+    def do_post(self, endpoint, data):
+        """POST-method"""
+        url = '/'.join([endpoint])
+        return requests.post(url, data)
+
+    def do_put(self, endpoint, data):
+        """POST-method"""
+        url = '/'.join([endpoint])
+        return requests.put(url, data)
+
+    def do_delete(self, endpoint):
+        """Delete-method"""
+        url = '/'.join([self.address, endpoint])
+        return requests.delete(url)
+
+    def do_json(self, endpoint):
+        """JSON-method"""
+        url = '/'.join([endpoint])
+        req = requests.get(url)
+        return json.loads(req.text)
 
 
 def pytest_addoption(parser):
