@@ -84,9 +84,9 @@ def test_endpoint_json(client, endpoints):
     assert j_s['status'] == 'success'
 
 
-@pytest.mark.parametrize('endpoint', [ENDPOINTS])
+@pytest.mark.parametrize('endpoint3', [ENDPOINT3])
 @pytest.mark.parametrize('data', [DATA])
-def test_endpoints_post(client, endpoint, data):
+def test_endpoints_post(client, endpoint3, data):
     """POST Status Code"""
-    response = client.do_post(endpoint, data)
+    response = client.do_post(endpoint3, data)
     assert response.status_code != 300
