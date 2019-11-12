@@ -16,8 +16,8 @@ class APIClient:
 
     def do_post(self, endpoint, data):
         """POST-method"""
-        url = '/'.join([endpoint])
-        return requests.post(url, data)
+        url = '/'.join([self.address, endpoint])
+        return requests.post(url, data=data)
 
     def do_put(self, endpoint, data):
         """POST-method"""
