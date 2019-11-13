@@ -14,10 +14,10 @@ class APIClient:
         url = '/'.join([self.address, endpoint])
         return requests.get(url)
 
-    def do_post(self, endpoint, data):
+    def do_post(self, endpoint, data, headers):
         """POST-method"""
         url = '/'.join([self.address, endpoint])
-        return requests.post(url, data=data)
+        return requests.post(url, data=data, headers=headers)
 
     def do_put(self, endpoint, data):
         """POST-method"""

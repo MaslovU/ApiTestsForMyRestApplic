@@ -1,3 +1,5 @@
+import json
+
 import pytest
 
 ENDPOINT3 = 'employee'
@@ -7,7 +9,8 @@ ENDPOINTS = [ENDPOINT3, ENDPOINT4, ENDPOINT5]
 PARAM1 = '1'
 PARAM2 = 'text=QA'
 PARAM3 = 'name=Yury'
-DATA = {"name": "Test"}
+DATA = json.dumps({"name": "MaslovU", "newTelephone": {"text": "777"}, "newDivision": {"text": "Pycharm"}})
+HEADERS = {'Content-type': 'application/json', 'Accept': 'application/json'}
 
 
 @pytest.mark.parametrize('endpoint3', [ENDPOINT3])
@@ -74,10 +77,10 @@ def test_url(client, endpoint):
     assert response.json()
 
 
+@pytest.mark.parametrize('headers', [HEADERS])
 @pytest.mark.parametrize('data', [DATA])
 @pytest.mark.parametrize('endpoint3', [ENDPOINT3])
-def test_endpoints_post(client, endpoint3, data):
+def test_endpoints_post(client, endpoint3, data, headers):
     """POST Status Code"""
-    #разобраться с форматом данных
-    response = client.do_post(endpoint3, data=data)
+    response = client.do_post(endpoint3, data, headers=headers)
     assert response.status_code != 300
