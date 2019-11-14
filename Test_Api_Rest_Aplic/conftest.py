@@ -19,10 +19,10 @@ class APIClient:
         url = '/'.join([self.address, endpoint])
         return requests.post(url, data=data, headers=headers)
 
-    def do_put(self, endpoint, data):
+    def do_put(self, endpoint, data, headers):
         """POST-method"""
         url = '/'.join([self.address, endpoint])
-        return requests.put(url, data=data)
+        return requests.put(url, data=data, headers=headers)
 
     def do_delete(self, endpoint):
         """Delete-method"""

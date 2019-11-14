@@ -1,4 +1,3 @@
-# need create get and put methods
 import json
 
 import pytest
@@ -6,8 +5,8 @@ import pytest
 ENDPOINT2 = 'division'
 DATA = json.dumps({'text': 'QA'})
 PARAM4 = '6'
-PARAM5 = '2'
-# HEADERS = {'Content-type': 'application/json', 'Accept': 'application/json'}
+PARAM5 = '21'
+HEADERS = {'Content-type': 'application/json', 'Accept': 'application/json'}
 
 
 @pytest.mark.parametrize('endpoint2', [ENDPOINT2])
@@ -63,12 +62,12 @@ def test_endpoints_division(client, endpoint2, param5):
     assert jsons['text'] == 'Develop'
 
 
-# @pytest.mark.parametrize('headers', [HEADERS])
+@pytest.mark.parametrize('headers', [HEADERS])
 @pytest.mark.parametrize('data', [DATA])
 @pytest.mark.parametrize('param4', [PARAM4])
 @pytest.mark.parametrize('endpoint2', [ENDPOINT2])
-def test_url(client, endpoint2, data, param4):
+def test_url(client, endpoint2, data, param4, headers):
     """Check PUT Method Status Code"""
     endpoint = '/'.join([endpoint2, param4])
-    response = client.do_put(endpoint, data=data)
+    response = client.do_put(endpoint, data=data, headers=headers)
     assert response.status_code == 500
