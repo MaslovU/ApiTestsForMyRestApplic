@@ -13,6 +13,6 @@ RUN pip install requests
 
 RUN git clone https://github.com/MaslovU/ApiTestsForMyrestAplic.git /ApiTestsForMyrestAplic
 
-WORKDIR /ApiTestsForMyrestAplic
+WORKDIR ./ApiTestsForMyrestAplic
 
 CMD ["/bin/bash"]
