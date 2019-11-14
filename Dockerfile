@@ -11,8 +11,8 @@ RUN apt-get update -y && apt-get install git -y
 RUN pip install pytest
 RUN pip install requests
 
-RUN git clone https://github.com/MaslovU/ApiTestsForMyrestAplic.git ./ApiTestsForMyrestAplic
+RUN git clone https://github.com/MaslovU/ApiTestsForMyrestAplic.git /ApiTestsForMyrestAplic
 
-WORKDIR ./ApiTestsForMyrestAplic
+WORKDIR /ApiTestsForMyrestAplic
 
 CMD ["/bin/bash"]
