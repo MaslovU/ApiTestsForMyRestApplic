@@ -6,30 +6,30 @@ from Test_Api_Rest_Aplic.consts import HEADERS, ENDPOINT3, ENDPOINT4, ENDPOINT5,
 
 
 @pytest.mark.parametrize('endpoint', [ENDPOINT3])
-@pytest.mark.parametrize('param', [PARAM_EMPLOYEE_1])
-def test_endpoints_employee(client, endpoint, param):
+@pytest.mark.parametrize('param_id', [PARAM_EMPLOYEE_1])
+def test_endpoints_employee(client, endpoint, param_id):
     """Check employee in list"""
-    new_endpoint = '/'.join([endpoint, param])
+    new_endpoint = '/'.join([endpoint, param_id])
     response = client.do_get(new_endpoint)
     jsons = response.json()
     assert jsons['name'] == 'Yury'
 
 
 @pytest.mark.parametrize('endpoint', [ENDPOINT5])
-@pytest.mark.parametrize('param', [PARAM_EMPLOYEE_2])
-def test_endpoints_by_division(client, endpoint, param):
+@pytest.mark.parametrize('param_division', [PARAM_EMPLOYEE_2])
+def test_endpoints_by_division(client, endpoint, param_division):
     """Find employee dy division"""
-    new_endpoint = '?'.join([endpoint, param])
+    new_endpoint = '?'.join([endpoint, param_division])
     response = client.do_get(new_endpoint)
     jsons = response.json()
     assert jsons[0]['name'] != 'Maslov'
 
 
 @pytest.mark.parametrize('endpoint', [ENDPOINT3])
-@pytest.mark.parametrize('param', [PARAM_EMPLOYEE_3])
-def test_endpoints_by_name(client, endpoint, param):
+@pytest.mark.parametrize('param_name', [PARAM_EMPLOYEE_3])
+def test_endpoints_by_name(client, endpoint, param_name):
     """Find employee dy name"""
-    new_endpoint = '?'.join([endpoint, param])
+    new_endpoint = '?'.join([endpoint, param_name])
     response = client.do_get(new_endpoint)
     jsons = response.json()
     assert jsons[0]['name'] == 'Yury'

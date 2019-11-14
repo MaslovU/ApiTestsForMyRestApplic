@@ -1,8 +1,8 @@
 """Tests for Telephone's entity"""
 
 import pytest
-from Test_Api_Rest_Aplic.consts import ENDPOINT6, HEADERS, DATA_TELEPHONE_1, DATA_TELEPHONE_2, PARAM_TELEPHONE_4, \
-    PARAM_TELEPHONE_6, PARAM_TELEPHONE_7
+from Test_Api_Rest_Aplic.consts import ENDPOINT6, HEADERS, DATA_TELEPHONE_1, DATA_TELEPHONE_2, PARAM_TELEPHONE_1, \
+    PARAM_TELEPHONE_2, PARAM_TELEPHONE_3
 
 
 @pytest.mark.parametrize('endpoint', [ENDPOINT6])
@@ -49,10 +49,10 @@ def test_url_redirect(client, endpoint):
 
 
 @pytest.mark.parametrize('endpoint', [ENDPOINT6])
-@pytest.mark.parametrize('param', [PARAM_TELEPHONE_6])
-def test_endpoints_division(client, endpoint, param):
+@pytest.mark.parametrize('param_id', [PARAM_TELEPHONE_2])
+def test_endpoints_division(client, endpoint, param_id):
     """Check employee in list"""
-    endpoint2 = '/'.join([endpoint, param])
+    endpoint2 = '/'.join([endpoint, param_id])
     response = client.do_get(endpoint2)
     jsons = response.json()
     assert jsons['text'] == '123546'
@@ -60,21 +60,21 @@ def test_endpoints_division(client, endpoint, param):
 
 @pytest.mark.parametrize('headers', [HEADERS])
 @pytest.mark.parametrize('data', [DATA_TELEPHONE_1])
-@pytest.mark.parametrize('param', [PARAM_TELEPHONE_4])
+@pytest.mark.parametrize('param_id', [PARAM_TELEPHONE_1])
 @pytest.mark.parametrize('endpoint', [ENDPOINT6])
-def test_url_code(client, endpoint, data, param, headers):
+def test_url_code(client, endpoint, data, param_id, headers):
     """Check PUT Method Status Code"""
-    new_endpoint = '/'.join([endpoint, param])
+    new_endpoint = '/'.join([endpoint, param_id])
     response = client.do_put(new_endpoint, data=data, headers=headers)
     assert response.status_code == 200
 
 
 @pytest.mark.parametrize('headers', [HEADERS])
 @pytest.mark.parametrize('data', [DATA_TELEPHONE_2])
-@pytest.mark.parametrize('param', [PARAM_TELEPHONE_7])
+@pytest.mark.parametrize('param_id', [PARAM_TELEPHONE_3])
 @pytest.mark.parametrize('endpoint', [ENDPOINT6])
-def test_url_text(client, endpoint, data, param, headers):
+def test_url_text(client, endpoint, data, param_id, headers):
     """Check PUT Method Status Code"""
-    new_endpoint = '/'.join([endpoint, param])
+    new_endpoint = '/'.join([endpoint, param_id])
     response = client.do_put(new_endpoint, data=data, headers=headers)
     assert response.text == '{"id":13,"text":"3433656565"}'

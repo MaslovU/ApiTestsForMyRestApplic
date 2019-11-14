@@ -1,7 +1,7 @@
 """Tests for Division's Entity"""
 
 import pytest
-from Test_Api_Rest_Aplic.consts import ENDPOINT2, HEADERS, DATA_DIVISION, PARAM_DIV_4, PARAM_DIV_5
+from Test_Api_Rest_Aplic.consts import ENDPOINT2, HEADERS, DATA_DIVISION, PARAM_DIV_1, PARAM_DIV_2
 
 
 @pytest.mark.parametrize('endpoint', [ENDPOINT2])
@@ -48,10 +48,10 @@ def test_url(client, endpoint):
 
 
 @pytest.mark.parametrize('endpoint', [ENDPOINT2])
-@pytest.mark.parametrize('param', [PARAM_DIV_5])
-def test_endpoints_division(client, endpoint, param):
+@pytest.mark.parametrize('param_id', [PARAM_DIV_2])
+def test_endpoints_division(client, endpoint, param_id):
     """Check employee in list"""
-    new_endpoint = '/'.join([endpoint, param])
+    new_endpoint = '/'.join([endpoint, param_id])
     response = client.do_get(new_endpoint)
     jsons = response.json()
     assert jsons['text'] == 'Durk'
@@ -59,10 +59,10 @@ def test_endpoints_division(client, endpoint, param):
 
 @pytest.mark.parametrize('headers', [HEADERS])
 @pytest.mark.parametrize('data', [DATA_DIVISION])
-@pytest.mark.parametrize('param', [PARAM_DIV_4])
+@pytest.mark.parametrize('param_id', [PARAM_DIV_1])
 @pytest.mark.parametrize('endpoint', [ENDPOINT2])
-def test_url_put_method(client, endpoint, data, param, headers):
+def test_url_put_method(client, endpoint, data, param_id, headers):
     """Check PUT Method Status Code"""
-    new_endpoint = '/'.join([endpoint, param])
+    new_endpoint = '/'.join([endpoint, param_id])
     response = client.do_put(new_endpoint, data=data, headers=headers)
     assert response.status_code == 500

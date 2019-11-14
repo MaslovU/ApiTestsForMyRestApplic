@@ -24,10 +24,10 @@ def test_endpoints_post(client, endpoint, data, headers):
     assert checking[len(checking)-1]['text'] == "Added from Autotests"
 
 
-@pytest.mark.parametrize('param', [PARAM_MESSAGE_1])
+@pytest.mark.parametrize('param_id', [PARAM_MESSAGE_1])
 @pytest.mark.parametrize('endpoint', [ENDPOINT1])
-def test_endpoint_delete(client, endpoint, param):
-    new_endpoint = '/'.join([endpoint, param])
+def test_endpoint_delete(client, endpoint, param_id):
+    new_endpoint = '/'.join([endpoint, param_id])
     response = client.do_delete(new_endpoint)
     resp = client.do_get(new_endpoint)
     assert resp.text == 'null'
@@ -36,10 +36,10 @@ def test_endpoint_delete(client, endpoint, param):
 
 @pytest.mark.parametrize('headers', [HEADERS])
 @pytest.mark.parametrize('data', [DATA_MESSAGE_1])
-@pytest.mark.parametrize('param', [PARAM_MESSAGE_2])
+@pytest.mark.parametrize('param_id', [PARAM_MESSAGE_2])
 @pytest.mark.parametrize('endpoint', [ENDPOINT1])
-def test_url_text(client, endpoint, data, param, headers):
+def test_url_text(client, endpoint, data, param_id, headers):
     """Check PUT Method Status Code"""
-    new_endpoint = '/'.join([endpoint, param])
+    new_endpoint = '/'.join([endpoint, param_id])
     response = client.do_put(new_endpoint, data=data, headers=headers)
     assert response.text == '{"id":7,"text":"For test","creationDate":null}'
