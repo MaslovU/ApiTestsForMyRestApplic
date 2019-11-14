@@ -1,18 +1,13 @@
-import json
+"""Tests for Division's Entity"""
 
 import pytest
-
-ENDPOINT2 = 'division'
-DATA = json.dumps({'text': 'QA'})
-PARAM4 = '6'
-PARAM5 = '21'
-HEADERS = {'Content-type': 'application/json', 'Accept': 'application/json'}
+from Test_Api_Rest_Aplic.consts import ENDPOINT2, HEADERS, DATA_DIVISION, PARAM_DIV_4, PARAM_DIV_5
 
 
-@pytest.mark.parametrize('endpoint2', [ENDPOINT2])
-def test_endpoints_encoding(client, endpoint2):
+@pytest.mark.parametrize('endpoint', [ENDPOINT2])
+def test_endpoints_encoding(client, endpoint):
     """Encoding"""
-    response = client.do_get(endpoint2)
+    response = client.do_get(endpoint)
     jsons = response.json()
     assert jsons[0]['text'] != 'QA'
 
@@ -52,22 +47,22 @@ def test_url(client, endpoint):
     assert not response.is_redirect
 
 
-@pytest.mark.parametrize('endpoint2', [ENDPOINT2])
-@pytest.mark.parametrize('param5', [PARAM5])
-def test_endpoints_division(client, endpoint2, param5):
+@pytest.mark.parametrize('endpoint', [ENDPOINT2])
+@pytest.mark.parametrize('param', [PARAM_DIV_5])
+def test_endpoints_division(client, endpoint, param):
     """Check employee in list"""
-    endpoint2 = '/'.join([endpoint2, param5])
-    response = client.do_get(endpoint2)
+    new_endpoint = '/'.join([endpoint, param])
+    response = client.do_get(new_endpoint)
     jsons = response.json()
-    assert jsons['text'] == 'Develop'
+    assert jsons['text'] == 'Durk'
 
 
 @pytest.mark.parametrize('headers', [HEADERS])
-@pytest.mark.parametrize('data', [DATA])
-@pytest.mark.parametrize('param4', [PARAM4])
-@pytest.mark.parametrize('endpoint2', [ENDPOINT2])
-def test_url(client, endpoint2, data, param4, headers):
+@pytest.mark.parametrize('data', [DATA_DIVISION])
+@pytest.mark.parametrize('param', [PARAM_DIV_4])
+@pytest.mark.parametrize('endpoint', [ENDPOINT2])
+def test_url_put_method(client, endpoint, data, param, headers):
     """Check PUT Method Status Code"""
-    endpoint = '/'.join([endpoint2, param4])
-    response = client.do_put(endpoint, data=data, headers=headers)
+    new_endpoint = '/'.join([endpoint, param])
+    response = client.do_put(new_endpoint, data=data, headers=headers)
     assert response.status_code == 500

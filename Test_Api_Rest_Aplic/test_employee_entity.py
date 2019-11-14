@@ -1,53 +1,44 @@
-import json
+"""Test for Employee Table"""
 
 import pytest
-
-ENDPOINT3 = 'employee'
-ENDPOINT4 = 'employees'
-ENDPOINT5 = 'employeeFromDiv'
-ENDPOINTS = [ENDPOINT3, ENDPOINT4, ENDPOINT5]
-PARAM1 = '1'
-PARAM2 = 'text=QA'
-PARAM3 = 'name=Yury'
-DATA = json.dumps({"name": "MaslovU", "newTelephone": {"text": "777"}, "newDivision": {"text": "Pycharm"}})
-HEADERS = {'Content-type': 'application/json', 'Accept': 'application/json'}
+from Test_Api_Rest_Aplic.consts import HEADERS, ENDPOINT3, ENDPOINT4, ENDPOINT5, ENDPOINTS, \
+    PARAM_EMPLOYEE_1, PARAM_EMPLOYEE_2, PARAM_EMPLOYEE_3, DATA_EMPLOYEE
 
 
-@pytest.mark.parametrize('endpoint3', [ENDPOINT3])
-@pytest.mark.parametrize('param1', [PARAM1])
-def test_endpoints_employee(client, endpoint3, param1):
+@pytest.mark.parametrize('endpoint', [ENDPOINT3])
+@pytest.mark.parametrize('param', [PARAM_EMPLOYEE_1])
+def test_endpoints_employee(client, endpoint, param):
     """Check employee in list"""
-    endpoint = '/'.join([endpoint3, param1])
-    response = client.do_get(endpoint)
+    new_endpoint = '/'.join([endpoint, param])
+    response = client.do_get(new_endpoint)
     jsons = response.json()
-    # check for several employee
     assert jsons['name'] == 'Yury'
 
 
-@pytest.mark.parametrize('endpoint5', [ENDPOINT5])
-@pytest.mark.parametrize('param2', [PARAM2])
-def test_endpoints_by_division(client, endpoint5, param2):
+@pytest.mark.parametrize('endpoint', [ENDPOINT5])
+@pytest.mark.parametrize('param', [PARAM_EMPLOYEE_2])
+def test_endpoints_by_division(client, endpoint, param):
     """Find employee dy division"""
-    endpoint = '?'.join([endpoint5, param2])
-    response = client.do_get(endpoint)
+    new_endpoint = '?'.join([endpoint, param])
+    response = client.do_get(new_endpoint)
     jsons = response.json()
     assert jsons[0]['name'] != 'Maslov'
 
 
-@pytest.mark.parametrize('endpoint3', [ENDPOINT3])
-@pytest.mark.parametrize('param3', [PARAM3])
-def test_endpoints_by_name(client, endpoint3, param3):
+@pytest.mark.parametrize('endpoint', [ENDPOINT3])
+@pytest.mark.parametrize('param', [PARAM_EMPLOYEE_3])
+def test_endpoints_by_name(client, endpoint, param):
     """Find employee dy name"""
-    endpoint = '?'.join([endpoint3, param3])
-    response = client.do_get(endpoint)
+    new_endpoint = '?'.join([endpoint, param])
+    response = client.do_get(new_endpoint)
     jsons = response.json()
     assert jsons[0]['name'] == 'Yury'
 
 
-@pytest.mark.parametrize('endpoint4', [ENDPOINT4])
-def test_endpoints_all_employees(client, endpoint4):
+@pytest.mark.parametrize('endpoint', [ENDPOINT4])
+def test_endpoints_all_employees(client, endpoint):
     """Find all employees"""
-    response = client.do_get(endpoint4)
+    response = client.do_get(endpoint)
     jsons = response.json()
     assert jsons[0]['name'] != 'Maslov'
     assert jsons[0]['name'] == 'Yury'
@@ -78,9 +69,9 @@ def test_url(client, endpoint):
 
 
 @pytest.mark.parametrize('headers', [HEADERS])
-@pytest.mark.parametrize('data', [DATA])
-@pytest.mark.parametrize('endpoint3', [ENDPOINT3])
-def test_endpoints_post(client, endpoint3, data, headers):
+@pytest.mark.parametrize('data', [DATA_EMPLOYEE])
+@pytest.mark.parametrize('endpoint', [ENDPOINT3])
+def test_endpoints_post(client, endpoint, data, headers):
     """POST Status Code"""
-    response = client.do_post(endpoint3, data, headers=headers)
+    response = client.do_post(endpoint, data, headers=headers)
     assert response.status_code != 300
