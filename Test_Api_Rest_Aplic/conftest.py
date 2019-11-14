@@ -21,8 +21,8 @@ class APIClient:
 
     def do_put(self, endpoint, data):
         """POST-method"""
-        url = '/'.join([endpoint])
-        return requests.put(url, data)
+        url = '/'.join([self.address, endpoint])
+        return requests.put(url, data=data)
 
     def do_delete(self, endpoint):
         """Delete-method"""
