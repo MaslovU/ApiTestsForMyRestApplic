@@ -1,13 +1,18 @@
 pipeline {
-	agent {
-		docker {image "maslovu/api-tests"}
-	}
-	stages {
+  agent {
+    docker {
+      image 'maslovu/api-test'
+      args '''--network='host'
+--name apishkas'''
+    }
 
-        	stage('Pytest') {
-            		steps {
-                		sh "pytest -s -v ApiTestsForMyrestAplic"
-            		}
-        	}
-	}
+  }
+  stages {
+    stage('Loading') {
+      steps {
+        sh 'pytest -s -v ApiTestsForMyrestAplic'
+      }
+    }
+
+  }
 }

@@ -1,4 +1,6 @@
-"""Conftest"""
+"""Conftest
+    Created by Maslov Yury 14.11.19
+"""
 import json
 import pytest
 import requests
