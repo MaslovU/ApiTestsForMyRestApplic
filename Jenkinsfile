@@ -1,6 +1,7 @@
 pipeline {
-  agent any
-
+  agent {
+    docker { image 'maslovu/api-tests'}
+  }
   stages {
     stage('Clone repo') {
         steps {
