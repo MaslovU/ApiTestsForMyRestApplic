@@ -1,9 +1,9 @@
 pipeline {
   agent {
-    docker {image 'maslov'}
+    docker {image 'maslovu/api-tests'}
   }
   stages {
-    stage('Clone repo') {
+    stage('Pull image') {
         steps {
             sh 'docker run -it --name apishkas --network="host" maslovu/api-tests'
         }
