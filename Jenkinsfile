@@ -1,6 +1,6 @@
 pipeline {
   agent {
-    docker { image 'maslovu/api-tests'}
+    docker { image 'apishkas'}
   }
   stages {
     stage('Clone repo') {
