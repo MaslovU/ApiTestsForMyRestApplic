@@ -1,6 +1,6 @@
 pipeline {
   agent {
-    docker {'maslov'}
+    docker {image 'maslov'}
   }
   stages {
     stage('Clone repo') {
