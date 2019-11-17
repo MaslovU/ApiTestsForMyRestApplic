@@ -1,6 +1,6 @@
 pipeline {
   agent {
-    docker { image 'apishkas'}
+    docker
   }
   stages {
     stage('Clone repo') {
