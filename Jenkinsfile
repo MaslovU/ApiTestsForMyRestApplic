@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('Tests') {
       steps {
-        sh 'pytest -s -v ApiTestsForMyrestAplic'
+        sh 'sudo pytest -s -v ApiTestsForMyrestAplic'
       }
     }
 
