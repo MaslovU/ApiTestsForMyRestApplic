@@ -7,7 +7,7 @@ pipeline {
 
   }
   stages {
-    stage('') {
+    stage('Tests') {
       steps {
         sh 'pytest -s -v ApiTestsForMyrestAplic'
       }
