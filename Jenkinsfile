@@ -2,7 +2,7 @@ pipeline {
   agent {
     docker {
       image 'maslovu/api-tests'
-      args '--network=\'host\''
+      args '-it --network="host"'
     }
 
   }
