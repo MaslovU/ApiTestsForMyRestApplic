@@ -1,7 +1,7 @@
 pipeline {
   agent { 
     docker {
-      sh 'docker run -it --name apishkas --network="host" maslov/api-tests'
+      image sh 'docker run -it --name apishkas --network="host" maslov/api-tests'
     }
   }
   
