@@ -1,5 +1,9 @@
 pipeline {
-  agent { sh 'docker run -it --name apishkas --network="host" maslov/api-tests'}
+  agent { 
+    docker {
+      sh 'docker run -it --name apishkas --network="host" maslov/api-tests'
+    }
+  }
   
   stages {
     
