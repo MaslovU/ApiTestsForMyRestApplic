@@ -1,5 +1,5 @@
 pipeline {
-  agent { label 'maslovu/api-tests' }
+  agent any
   
   stages {
     stage ('run docker') {
