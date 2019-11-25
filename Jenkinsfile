@@ -6,7 +6,7 @@ pipeline {
     
     stage('run docker') {
       steps {
-        sh 'docker run --network=\'host\' maslovu/api-tests'
+        sh "docker run -it --network='host' maslov/api-tests"
       }
     }
      stage('run test') {
