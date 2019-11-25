@@ -5,7 +5,13 @@ pipeline {
   stages {
     stage ('run docker') {
       steps {
-        sh 'docker start jenka'
+        sh "docker run -it --name apishkas --network='host' maslov/api-tests"
+      }
+    }
+    
+    stage ('run tests') {
+      steps {
+
         sh "docker exec jenka 'pytest -s -v ApiTestsForMyrestAplic'"
       }
     }
