@@ -15,4 +15,4 @@ RUN git clone https://github.com/MaslovU/ApiTestsForMyrestAplic.git /PycharmProj
 
 WORKDIR ./PycharmProjects/uiTestsForMyRestAplic
 
-CMD ["/bin/bash"]
+CMD ["/bin/bash", "pytest -s -v ApiTestsForMyrestAplic"]
