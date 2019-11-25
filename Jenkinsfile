@@ -6,7 +6,7 @@ pipeline {
     stage ('run docker') {
       steps {
         sh "docker run -i --name apishkas --network='host' maslovu/api-tests"
-        sh "docker exec apishkas 'pytest -s -v ApiTestsForMyrestAplic'"
+        sh "docker exec apishkas 'pytest -s -v Test_Api_Rest_Aplic'"
       }
     }
   }
