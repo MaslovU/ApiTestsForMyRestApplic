@@ -9,7 +9,7 @@ pipeline {
 
     stage ('run docker') {
       steps {
-        sh 'docker run -it --name apishkas --network="host" maslov/api-tests'
+        sh 'docker run -it --name apishkas --network="host" maslovu/api-tests'
       }
     }
     
