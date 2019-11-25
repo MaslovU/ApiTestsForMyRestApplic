@@ -6,6 +6,7 @@ pipeline {
     }
   
   stages {
+
     stage ('run docker') {
       steps {
         sh 'docker run -it --name apishkas --network="host" maslov/api-tests'
@@ -17,6 +18,5 @@ pipeline {
         sh 'pytest -s -v ApiTestsForMyrestAplic'
       }
     }
-
   }
 }
