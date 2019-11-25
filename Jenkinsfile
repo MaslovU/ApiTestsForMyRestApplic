@@ -9,10 +9,6 @@ pipeline {
         sh "docker run --network='host' maslovu/api-tests"
       }
     }
-     stage('run test') {
-      steps {
-        sh 'pytest -s -v ApiTestsForMyrestAplic'
-      }
-    }
+
   }
 }
