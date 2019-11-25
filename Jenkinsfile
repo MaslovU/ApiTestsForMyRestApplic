@@ -12,7 +12,7 @@ pipeline {
     stage ('run tests') {
       steps {
 
-        sh "docker exec jenka 'pytest -s -v ApiTestsForMyrestAplic'"
+        sh "docker exec apishkas 'pytest -s -v ApiTestsForMyrestAplic'"
       }
     }
 
