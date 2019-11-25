@@ -10,7 +10,7 @@ pipeline {
     }
     stage('run test') {
       steps {
-        sh "docker exec -it maslovu/api-tests 'pytest -s -v ApiTestsForMyrestAplic'"
+        sh "docker exec -it apishkas 'pytest -s -v ApiTestsForMyrestAplic'"
       }
     }
 
