@@ -6,7 +6,7 @@ pipeline {
     
     stage('run docker') {
       steps {
-        sh "docker run --network='host' maslovu/api-tests"
+        sh "docker exec -it --network='host' maslovu/api-tests 'pytest -s -v ApiTestsForMyrestAplic'"
       }
     }
 
