@@ -1,12 +1,18 @@
+ 
 pipeline {
-  
-  agent any
+      agent any
   
   stages {
+
     stage ('run docker') {
       steps {
-        sh "docker run -i --name apishkas --network='host' maslovu/api-tests"
-        sh "docker exec apishkas 'pytest -s -v Test_Api_Rest_Aplic'"
+        sh 'docker run --network="host" maslov/api-tests'
+      }
+    }
+    
+    stage('run tests') {
+      steps {
+        sh 'pytest -s -v Test_Api_Rest_Aplic'
       }
     }
   }
