@@ -2,7 +2,7 @@
 pipeline {
  agent {
   docker {
-   image {'maslovu/api-tests'}
+   image ('maslovu/api-tests')
   }
  }
   
