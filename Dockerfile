@@ -4,7 +4,7 @@ ARG pass
 
 RUN apt-get update
 RUN apt-get upgrade -y
-RUN apt-get install -y python python-pip python-dev && pip install --upgrade pip
+RUN apt-get install -y python3 python-pip python-dev && pip install --upgrade pip
 
 RUN apt-get update -y && apt-get install git -y
 

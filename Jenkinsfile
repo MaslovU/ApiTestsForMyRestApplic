@@ -1,15 +1,16 @@
+ 
 pipeline {
-  agent any
-
+ agent {
+  docker {
+   image ('maslovu/api-tests')
+  }
+ }
+  
   stages {
-    stage('Clone repo') {
-        steps {
-            sh 'docker run -it --name apishkas --network="host" maslovu/api-tests'
-        }
-    }
-    stage('Run Tests') {
+
+    stage ('run tests') {
       steps {
-        sh 'pytest -s -v ApiTestsForMyrestAplic'
+       sh "docker exec -it maslovu/api-tests 'pytest -s -v Test_Api_Rest_Aplic'"
       }
     }
   }
