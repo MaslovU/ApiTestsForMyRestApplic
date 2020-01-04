@@ -40,7 +40,7 @@ class APIClient:
 
 def pytest_addoption(parser):
     """parser"""
-    parser.addoption('--address', action='store', default='http://localhost:8080')
+    parser.addoption('--address', action='store', default='http://localhost:9000')
 
 
 @pytest.fixture(autouse=True)
