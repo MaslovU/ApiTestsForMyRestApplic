@@ -8,7 +8,7 @@ import requests
 
 class APIClient:
     """APIClient"""
-    def __init__(self, address='http://localhost:9000'):
+    def __init__(self, address):
         self.address = address
 
     def do_get(self, endpoint):
@@ -46,4 +46,5 @@ def pytest_addoption(parser):
 @pytest.fixture(autouse=True)
 def client(request):
     """client"""
-    return APIClient()
+    adress = request.config.getoption("--address")
+    return APIClient(adress)
